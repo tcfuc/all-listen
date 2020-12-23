@@ -3,14 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "all-listen": {
+    "all-listen-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -20,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/all-listen",
+            "outputPath": "dist/all-listen-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -53,13 +51,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -68,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "all-listen:build"
+            "browserTarget": "all-listen-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "all-listen:build:production"
+              "browserTarget": "all-listen-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "all-listen:build"
+            "browserTarget": "all-listen-web:build"
           }
         },
         "test": {
@@ -94,6 +92,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -116,19 +115,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "all-listen:serve"
+            "devServerTarget": "all-listen-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "all-listen:serve:production"
+              "devServerTarget": "all-listen-web:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "all-listen",
+  "defaultProject": "all-listen-web",
   "cli": {
-    "analytics": "29a5afb4-f108-4b26-a9a2-e4ac7a0e231a"
+    "analytics": false
   }
 }
