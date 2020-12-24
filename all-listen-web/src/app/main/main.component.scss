@@ -1,28 +1,132 @@
+$nav-height : 64px;
+
+.nav-height {
+  height: $nav-height;
+  line-height: $nav-height;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 :host {
   text-align: center;
+}
+
+::ng-deep .ant-slider {
+  margin: 0px 10px;
 }
 
 .page {
   min-height: 100vh;
 }
 
-nz-header,
-nz-footer {
-  background: #7dbcea;
-  color: #fff;
+nz-header {
+  @extend .nav-height;
+
+  background: #FFFFFF;
+  color: #000000;
+  border-bottom: 1px solid #001529;
+  padding: 0px 10px;
+
+  .header-input {
+    width: 300px;
+  }
 }
 
 nz-footer {
-  line-height: 1.5;
+  @extend .nav-height;
+
+  background: #001529;
+  color: #fff;
+  padding: 0px;
+
+  .footer-tooltip {
+    display: flex;
+    color: inherit;
+    padding: 0px 20px 0px 20px;
+
+    i {
+      @extend .nav-height;
+      @extend .flex-center;
+
+      flex: 1;
+      font-size: 20px;
+    }
+  }
+
+  .footer-bar {
+    display: flex;
+
+    .music-cover {
+      width: $nav-height;
+      background: #fff;
+    }
+
+    .music-bar {
+      flex: 1;
+      padding: 0px 15px;
+
+      >div {
+        @extend .flex-center;
+
+        width: inherit;
+        height: $nav-height / 3.5;
+        line-height: $nav-height / 3.5;
+      }
+
+      >div:nth-of-type(2) {
+        justify-content: space-between;
+      }
+
+      >div:last-child {
+        height: 24px;
+        overflow: hidden;
+
+        nz-slider {
+          width: 100%;
+          padding: 0px 2px;
+
+          .ant-slider {
+            margin: 0px;
+          }
+        }
+      }
+    }
+
+  }
+
+  .voice-slider {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    nz-slider {
+      width: 100%;
+      padding: 0px 2px;
+    }
+  }
+
+  >div:last-child {
+    border-left: 3px solid #4B7C99;
+  }
+
 }
 
 nz-sider {
-  background: #3ba0e9;
   color: #fff;
+  border-bottom: 2px solid #4B7C99;
+
+  .title {
+    @extend .nav-height;
+  }
 }
 
 nz-content {
-  background: rgba(16, 142, 233, 1);
+  background: #f1f1f1;
   color: #fff;
   min-height: 120px;
   line-height: 120px;
@@ -31,9 +135,3 @@ nz-content {
 nz-layout:last-child {
   margin: 0;
 }
-
-.title{
-  height: 64px;
-  line-height: 64px;
-}
-
