@@ -6,6 +6,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 // 引入全部的图标
 import * as AllIcons from '@ant-design/icons-angular/icons';
@@ -20,7 +21,8 @@ const atndModule = [
   NzIconModule.forRoot(icons),
   NzInputModule,
   NzGridModule,
-  NzSliderModule
+  NzSliderModule,
+  NzTableModule
 ]
 
 @NgModule({

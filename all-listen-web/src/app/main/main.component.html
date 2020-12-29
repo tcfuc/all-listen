@@ -21,25 +21,48 @@
             <nz-header>
                 <div class="header-input">
                     <nz-input-group [nzSuffix]="suffixIconSearch">
-                        <input type="text" nz-input placeholder="搜索歌曲" />
+                        <input type="text" nz-input placeholder="搜索歌曲" [(ngModel)]="keyword" />
                     </nz-input-group>
                     <ng-template #suffixIconSearch>
-                        <i nz-icon nzType="search"></i>
+                        <i nz-icon nzType="search" (click)="search(keyword)"></i>
                     </ng-template>
                 </div>
             </nz-header>
             <nz-content>
-                
+                <nz-table #basicTable [nzData]="list" [nzScroll]="{x: '1500px',y: '670px'}">
+                    <thead>
+                        <tr>
+                            <th>歌曲名</th>
+                            <th>歌手</th>
+                            <th>专辑名</th>
+                            <th nzWidth="100px">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of list">
+                            <td>
+                                <a href="#" (click)="getAudio(data.id)">{{ data.name }}</a>
+                            </td>
+                            <td>{{ data.artist }}</td>
+                            <td>{{ data.album }}</td>
+                            <td>
+                                <span>操作</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
             </nz-content>
         </nz-layout>
     </nz-layout>
     <nz-footer nz-row>
         <div nz-col nzSpan="4" class="footer-tooltip">
             <i nz-icon nzType="step-backward" nzTheme="outline"></i>
-            <i nz-icon nzType="pause" nzTheme="outline"></i>
+            <i nz-icon (nzType)="audio.paused ? 'pause' : 'caret-right'" nzTheme="outline"
+                (click)="playOrPause()"></i>
             <i nz-icon nzType="step-forward" nzTheme="outline"></i>
         </div>
         <div nz-col nzSpan="16" class="footer-bar">
+            <audio id="audio" [src]="audioUrl"></audio>
             <div class="music-cover">
             </div>
             <div class="music-bar">
@@ -61,7 +84,7 @@
 
             <div class="icon-wrapper voice-slider">
                 <i nz-icon nzType="sound" nzTheme="outline"></i>
-                <nz-slider [(ngModel)]="value2"></nz-slider>
+                <nz-slider [(ngModel)]="vol" (ngModelChange)="changeVol(vol)"></nz-slider>
             </div>
         </div>
     </nz-footer>
