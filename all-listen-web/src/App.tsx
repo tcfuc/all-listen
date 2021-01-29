@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './App.less';
 
-import { Layout, Menu, Input, Row, Col, Slider } from 'antd';
+import { Layout, Menu, Input, Row, Col, Slider, List, Button } from 'antd';
 import {
   PieChartOutlined,
   UserOutlined,
@@ -35,12 +35,35 @@ class MainHeader extends React.Component {
 }
 
 class MainContent extends React.Component {
+  data: Array<any> = [
+    {
+      title: 'Ant Design Title 1',
+    },
+    {
+      title: 'Ant Design Title 2',
+    },
+    {
+      title: 'Ant Design Title 3',
+    },
+    {
+      title: 'Ant Design Title 4',
+    },
+  ];
+
   render() {
     return (
       <Content style={{ margin: '16px' }}>
         <div className="site-layout-background" style={{ padding: 24, height: '100%' }}>
-          Bill is a cat.
-            </div>
+          <List
+            itemLayout="horizontal"
+            dataSource={this.data.slice(0, 10)}
+            renderItem={item => (
+              <List.Item>
+                <List.Item.Meta
+                  title={<Button type="link">{item.title}</Button>} />
+              </List.Item>
+            )} />
+        </div>
       </Content>
     )
   }
@@ -53,22 +76,30 @@ class MainFooter extends React.Component {
         <Row style={{ height: '100%' }}>
           <Col span={4} className="footer-toolbar comm-flex-center">
             <Row style={{ width: '100%' }}>
-              <Col span={8} className="comm-flex-center" ><StepBackwardOutlined className="comm-icon" /></Col>
-              <Col span={8} className="comm-flex-center" ><PauseOutlined className="comm-icon" /></Col>
-              <Col span={8} className="comm-flex-center" ><StepForwardOutlined className="comm-icon" /></Col>
+              <Col span={8} className="comm-flex-center" >
+                <Button type="link" icon={<StepBackwardOutlined className="comm-icon" />} />
+              </Col>
+              <Col span={8} className="comm-flex-center" >
+                <Button type="link" icon={<PauseOutlined className="comm-icon" />} />
+              </Col>
+              <Col span={8} className="comm-flex-center" >
+                <Button type="link" icon={<StepForwardOutlined className="comm-icon" />} />
+              </Col>
             </Row>
           </Col>
           <Col span={16} className="footer-toolbar-main">
             <div className="title">
-              <span>开始时间</span>
-              <span>我是歌曲标题</span>
-              <span>结束时间</span>
+              <span>00:00</span>
+              <span className="song-name">喜欢你</span>
+              <span>03:00</span>
             </div>
             <Slider />
           </Col>
           <Col span={4} className="footer-toolbar comm-flex-center">
             <Row style={{ width: '100%' }}>
-              <Col span={4} className="comm-flex-center" ><BarsOutlined className="comm-icon" /></Col>
+              <Col span={4} className="comm-flex-center" >
+                <Button type="link" icon={<BarsOutlined className="comm-icon" />} />
+              </Col>
               <Col span={3} className="comm-flex-center" ><SoundOutlined className="comm-icon" /></Col>
               <Col span={16}><Slider /></Col>
             </Row>
@@ -97,7 +128,7 @@ class MainSider extends React.Component {
         <div className="logo" >
           All-Listen
         </div>
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" defaultOpenKeys={['sub1']}>
           <Menu.Item key="1" icon={<PieChartOutlined />}>
             精选歌单
             </Menu.Item>
