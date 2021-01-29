@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import './App.css';
+import './App.less';
 
 import { Layout, Menu, Input, Row, Col, Slider } from 'antd';
 import {
